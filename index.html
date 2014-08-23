@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="App-1 : app 1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>App-1</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/rohan05/app-1">View on GitHub</a>
+
+          <h1 id="project_title">App-1</h1>
+          <h2 id="project_tagline">app 1</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/rohan05/app-1/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/rohan05/app-1/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>&lt;!doctype html&gt;
+
+  </p>
+    <p></p>
+
+<pre><code>&lt;!-- CHAT MARKUP --&gt;
+&lt;div class='example-chat l-demo-container'&gt;
+  &lt;header&gt;Firebase Chat Demo&lt;/header&gt;
+
+  &lt;div class='example-chat-toolbar'&gt;
+    &lt;label for='nameInput'&gt;Username:&lt;/label&gt;
+    &lt;input ng-model='name' type='text' id='nameInput' placeholder='enter a username...'&gt;
+  &lt;/div&gt;
+
+  &lt;ul id='example-messages' class='example-chat-messages'&gt;
+    &lt;li ng-repeat='msg in messages'&gt;
+      &lt;strong class='example-chat-username'&gt;{{msg.from}}&lt;/strong&gt;
+      {{msg.body}}
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;footer&gt;
+    &lt;input ng-model='msg' ng-keydown="addMessage($event)" type='text' id='messageInput'  placeholder='Type a message...'&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  var myApp = angular.module("myApp", ["firebase"]);
+
+  myApp.controller('MyController', ['$scope', '$firebase',
+    function($scope, $firebase) {
+      //CREATE A FIREBASE REFERENCE
+      var ref = new Firebase("https://umuzyh7lctj.firebaseio-demo.com/");
+
+      // GET MESSAGES AS AN ARRAY
+      $scope.messages = $firebase(ref).$asArray();
+
+      //ADD MESSAGE METHOD
+      $scope.addMessage = function(e) {
+
+        //LISTEN FOR RETURN KEY
+        if (e.keyCode === 13 &amp;&amp; $scope.msg) {
+          //ALLOW CUSTOM OR ANONYMOUS USER NAMES
+          var name = $scope.name || 'anonymous';
+
+          //ADD TO FIREBASE
+          $scope.messages.$add({
+            from: name,
+            body: $scope.msg
+          });
+
+          //RESET MESSAGE
+          $scope.msg = "";
+        }
+      }
+    }
+  ]);
+&lt;/script&gt;
+</code></pre>
+
+<p>
+</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">App-1 maintained by <a href="https://github.com/rohan05">rohan05</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
